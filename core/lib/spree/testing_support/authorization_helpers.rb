@@ -28,6 +28,7 @@ module Spree
             ability = Spree::TestingSupport::AuthorizationHelpers::Request::SuperAbility
             Spree::Ability.register_ability(ability)
           end
+
         end
 
         def custom_authorization!(&block)
@@ -48,6 +49,6 @@ module Spree
 end
 
 RSpec.configure do |config|
-  config.extend Spree::TestingSupport::AuthorizationHelpers::Controller, :type => :controller
-  config.extend Spree::TestingSupport::AuthorizationHelpers::Request, :type => :feature
+  config.extend Spree::TestingSupport::AuthorizationHelpers::Controller, type: :controller
+  config.extend Spree::TestingSupport::AuthorizationHelpers::Request, type: :feature
 end

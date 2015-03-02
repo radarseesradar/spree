@@ -47,7 +47,11 @@ handle_rename = (e, data) ->
     type: "POST",
     dataType: "json",
     url: url.toString(),
-    data: {_method: "put", "taxon[name]": name },
+    data: {
+      _method: "put",
+      "taxon[name]": name,
+      token: Spree.api_key
+    },
     error: handle_ajax_error
 
 handle_delete = (e, data) ->
@@ -61,7 +65,10 @@ handle_delete = (e, data) ->
         type: "POST",
         dataType: "json",
         url: delete_url.toString(),
-        data: {_method: "delete"},
+        data: {
+          _method: "delete",
+          token: Spree.api_key
+        },
         error: handle_ajax_error
     else
       $.jstree.rollback(last_rollback)
