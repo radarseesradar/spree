@@ -25,7 +25,9 @@ module Spree
         end
         
         def narrow_search
-          @properties.fetch(:keywords) {''}.split.each do | keyword |
+          keywords = @properties.fetch(:keywords) {''}
+          return unless keywords
+          keywords.split.each do | keyword |
             @products = @products.where( "name like ?", "%#{keyword}%" )
           end
         end
