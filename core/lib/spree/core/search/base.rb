@@ -28,7 +28,7 @@ module Spree
           keywords = @properties.fetch(:keywords) {''}
           return unless keywords
           keywords.split.each do | keyword |
-            @products = @products.where( "name like ?", "%#{keyword}%" )
+            @products = @products.where( "LOWER(name) like ?", "%#{keyword.downcase}%" )
           end
         end
 
