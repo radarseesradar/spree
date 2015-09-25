@@ -403,6 +403,8 @@ module Spree
 
     def available_payment_methods
       @available_payment_methods ||= (PaymentMethod.available(:front_end) + PaymentMethod.available(:both)).uniq
+      return @available_payment_methods if bill_address.same_as?(ship_address)
+      return @available_payment_methods.select{ |m| m.type == 'Spree::Gateway::PayPalGateway' }
     end
 
     def pending_payments
