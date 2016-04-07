@@ -34,12 +34,12 @@ module Spree
 
       def capture!
         return true if completed?
+        started_processing!
         unless response_code
-          logger.error("Tried to capture without successfully authorizing first.")
+          logger.error("Tried to capture before successfully authorizing.")
           failure
           return false
         end
-        started_processing!
         protect_from_connection_error do
           check_environment
 
